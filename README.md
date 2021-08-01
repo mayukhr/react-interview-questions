@@ -190,6 +190,41 @@ export default const FunctionalComponent = React.memo(function FunctionalCompone
 
 ## Q-11. What are React Events?
 
+To handle events in react, we use 'React Events'. React Events are syntactically very similar to the DOM events, with a slight difference: it uses camelCasing.
+
+As an example:
+```
+DOM Events | React Events
+-------------------------
+onclick    | onClick
+onchange   | onChange
+onsubmit   | onSubmit
+
+```
+
+One small thing to notice here: `return false;` does not work to prevent default behavior in react events. We need to use preventDefault() method:
+
+HTML:
+```
+<form onsubmit="return false">
+  <button type="submit">Submit</button>
+</form>
+```
+REACT:
+```
+function ReactForm() {
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit Button</button>
+    </form>
+  );
+}
+```
+
 ## Q-12. Can parent components change value in States and Props?
 
 Yes, surely.
@@ -221,5 +256,23 @@ class Main extends Component {
 
 ## Q-16. Define Synthetic Events in React?
 
+When we use any react event(like onChange), React actually uses a wrapper method on top of the browser event. This makes every event-listner work same way in every browser. This wrapped events are called 'Synthetic' events.
+However, we can access `event.nativeEvent`, which will let us use browser's unwrapped native event.
+
 ## Q-17. What is JSX?
+
+JSX is a syntactic extension of JavaScript, which comes with full power of JavaScript. JSX stands for JavaScript XML. This can represent HTML while writing code in JavaScript.
+As an example:
+```
+// this is a simple jsx containing nested html elements
+const element = (
+  <div>
+    <h1>Hello!</h1>
+    <h2>Good to see you here.</h2>
+  </div>
+);
+
+```
+
+Also, JSX code can be saved in `.jsx` files, so that it could be identified(however, writing it in a `.js` file also works).
 
