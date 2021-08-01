@@ -46,6 +46,31 @@ We can simply have an HOC which can wrap around both Like and Comment components
 
 ## Q-4. Life cycle methods of React.
 
+If we are using Class Components in react, there are multiple methods, which help us control the behavior of the component. 
+
+This can look like:
+```
+class ASimpleComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  
+  // This is a lifecycle method.
+  componentDidMount() {
+   this.setState({color: "yellow"})
+  }
+  
+  render() {
+    return (
+      <h1>My Favorite Color is {this.state.color}</h1>
+    );
+  }
+}
+```
+There are other lifecycle methods like: `componentDidUpdate`, `componentWillUnmount` etc.
+
+
 ## Q-5. What is Refs in React?
 
 ## Q-6. What is Forwarding Refs in React?
