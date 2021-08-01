@@ -122,22 +122,102 @@ export function Child forwardRef((props, ref) {
 
 
 ## Q-7. What is Keys in React?
+When populating a list or a group of components, `keys` must be used in react to identify each an every item.
+Lets take an example:
+
+```
+const brothers = ['Rama', 'Laxmana', 'Bharata', 'Shatrughna'];
+const listOfBrothers = brothers.map((brother) =>
+  <li key={brother}>
+    {brother}
+  </li>
+);
+```
+It is important to provide an unique key for each item. That is how react knows which part of the list needs to be re-rendered. A better understanding of react keys help in the app performance.
 
 ## Q-8. What do you mean by Props Validation in React?
+React components can check the props passed to them and validate if those were of right types or not. If a prop with wrong type is sent to a component, react can show an warning.
+
+As an example(with custom validation):
+```
+import PropTypes from 'prop-types';
+
+function Component({fullname, date, custom}) {
+  return (
+    <p> 
+      Ok! this is {fullname} on {date} doing {custom} work!
+    </p>
+  );
+}
+
+// This will create a warning saying: "Warning: Failed prop type: Invalid prop!"
+const isValidCustom = function() {
+    return new Error('Invalid prop!');
+  }
+}
+
+Component.propTypes = {
+  custom: isValidCustom, // Custom validation
+  fullname: PropTypes.string,
+  date: PropTypes.instanceOf(Date)
+}
+```
 
 ## Q-9. What is the key difference between state and props?
+Well, state and props are 2 entirely different concepts in react:
+
+state: Application/Component's current state is this. We can use `setState`(for class components) and `useState` hook for functional component to set a state of component. A state represents what should a component look like in a perticular point of time.
+
+props: Props are properties/variables passed to a Component. Lets say, `<Component name='Mayukh' surname='Roy'/>` has two props: name and surname.
 
 ## Q-10. What are Pure Components in React?
+
+PureComponent in react is similar to `React.Component`, with an intention of performance improvement. The idea is, if nothing has been changed(in props), a component should not re-render. Hence, a PureComponent has a shallow-compare method written in it's `shouldComponentUpdate` method. 
+
+```
+class Component extends React.PureComponent { 
+
+}
+```
+To optimize a functional component same as above, we use an HOC called 'memo':
+
+```
+export default const FunctionalComponent = React.memo(function FunctionalComponent(props) {
+  /* render using props */
+});
+
+```
 
 ## Q-11. What are React Events?
 
 ## Q-12. Can parent components change value in States and Props?
 
+Yes, surely.
+
 ## Q-13. Can changes be made inside the component?
+
+Yes, surely.
 
 ## Q-14. Can we make changes inside child components?
 
+Yes, surely.
+
 ## Q-15. What is a Stateful component?
+A stateful component(typically refered to class components) are Class components in react with a state. As an example:
+
+```
+class Main extends Component {
+ constructor() {
+   super()
+   this.state = {
+     movies: ['Pather Panchali', 'Enemy at the gates', 'The Godfather', 'Back to the future'];
+   }
+ }
+ render() {
+   <MovieList movies={this.state.movies} />
+ }
+}
+```
 
 ## Q-16. Define Synthetic Events in React?
 
