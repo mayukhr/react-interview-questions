@@ -37,6 +37,13 @@ Connect method will connect a component to the global store, where all the state
 
 ## Q-3. What are Higher-Order Components (HOC)?
 
+HOCs are a design pattern used in React. To reuse a function/logic in multiple components, we use HOC pattern. 
+As an example, a Facebook `like` can happen both on a post and a comment below the post. `Like` is a simple counter which is needed for both Post and Comment.
+We can simply have an HOC which can wrap around both Like and Comment components and reuse it's counter logic.
+
+[I have created a simple implementation in CodeSandbox for above scenario. It's Up and Running here!](https://codesandbox.io/s/hoc-example-try-00oqh?file=/src/hoc/hoc.js)
+
+
 ## Q-4. Life cycle methods of React.
 
 ## Q-5. What is Refs in React?
