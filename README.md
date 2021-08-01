@@ -11,8 +11,11 @@
 
 ## Q-2. What do you mean by prop drilling and how can you avoid it?
 In React we pass properties(we often call these `props`) to the components below(or children). Now, if these children have child components of their own, which requires these `props`, we pass those down.
+
 In simple words, the above scenario may look like this:
-`ParentComponent() -aParentProp-> ChildComponent({aParentProp}) -aParentProp-> GrandChildComponent({aParentProp})` and so on.
+
+```ParentComponent() -aParentProp-> ChildComponent({aParentProp}) -aParentProp-> GrandChildComponent({aParentProp})```
+and so on.
 
 Now, is it a bad thing which we should avoid? 
 Maybe not! Actually it is great. It lets a developer avoid polluting global scope. If we were using global scope, everytime a dev has to think: "Can I change something without breaking something else in the app?". But, with prop-drilling, it is not the case.
