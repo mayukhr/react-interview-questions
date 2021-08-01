@@ -2,7 +2,7 @@
 
 ## Q-1. What is the virtual DOM (VDOM) and how does React use it to render to the DOM?
   
-  React Virtual DOM is a representation of UI. This is basically object which has nested objects(fibers) to represent the actual structure of a DOM. 
+  React Virtual DOM is a representation of UI. This is basically object which has nested objects to represent the actual structure of a DOM. 
   
   In react world, we do not need to manupulate DOM. Instead, we tell React the state of a component, which updates the virtual DOM. And then, react updates the actual DOM to make sure, the state of Virtual DOM and actual DOM states are same. 
   
@@ -46,7 +46,7 @@ We can simply have an HOC which can wrap around both Like and Comment components
 
 ## Q-4. Life cycle methods of React.
 
-If we are using Class Components in react, there are multiple methods, which help us control the behavior of the component. 
+If we are using Class Components in react, there are multiple methods, which help us control the behavior of the component. React lifecycle is basically: Mount, Update, Unmount(Similar to human: Birth, GrowUp, Death :)). And, to control things around these cycles, we use lifecycle methods.
 
 This can look like:
 ```
@@ -63,17 +63,63 @@ class ASimpleComponent extends React.Component {
   
   render() {
     return (
-      <h1>My Favorite Color is {this.state.color}</h1>
+      <h1>Component Color is {this.state.color}</h1>
     );
   }
 }
 ```
-There are other lifecycle methods like: `componentDidUpdate`, `componentWillUnmount` etc.
+There are lifecycle methods like: `componentDidMount`(Mount), `componentDidUpdate`(Update), `componentWillUnmount`(Unmount), which we use heavily.
+There are other lifecycke methods too, like: `getDerivedStateFromProps`, `shouldComponentUpdate` 
 
 
 ## Q-5. What is Refs in React?
+A Ref is a leash to a react component. Let me explain:
+In react, if we want to access/change a component directly, without using Props, we can use refs. 
+
+As an example, If we need to set a focus to a Text input field, we can use ref.
+```
+import { useRef, useEffect } from 'react';
+
+function TextInputWithFocus() {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  return (
+    <input 
+      ref={inputRef} 
+      type="text" 
+    />
+  );
+}
+```
 
 ## Q-6. What is Forwarding Refs in React?
+If a ref needs to be passed to a child component, we need to pass that ref to child. However, Refs can not be passed as props. To achieve this, `forwardRef` is uesd.
+
+```
+import React, {useRef, forwardRef} from 'react';
+
+// Parent component with ref
+export function Parent() {
+    const nodeRef = useRef();
+    return (
+       <Child ref={nodeRef}
+       )
+};
+
+// Child component using forwardRef
+export function Child forwardRef((props, ref) {
+    return (
+        <div ref={ref}>
+        </div>
+    )
+});
+
+```
+
 
 ## Q-7. What is Keys in React?
 
